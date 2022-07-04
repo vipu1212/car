@@ -1,15 +1,15 @@
-import { Body, Get, JsonController, Post, Param } from "routing-controllers";
-import { ColorsEntity } from "../models/ColorsEntity";
+import { Body, Get, JsonController, Post } from "routing-controllers";
+import { ColorEntity } from "../models/ColorEntity";
 
 @JsonController('/colors')
 export class ColorController {
-    @Get('/:id')
-    getOne(@Param('id') id: number): Promise<ColorsEntity> {
-        return ColorsEntity.findOneOrFail(id);
+    @Get()
+    getAll(): Promise<ColorEntity[]>  {
+        return ColorEntity.find();
     }
 
-    @Post('/')
-    postOne(@Body() color: ColorsEntity) {
-        return ColorsEntity.save(color);
+    @Post()
+    postOne(@Body() color: ColorEntity): Promise<ColorEntity> {
+        return ColorEntity.save(color);
     }
 }

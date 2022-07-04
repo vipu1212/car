@@ -2,12 +2,13 @@ import {
     BaseEntity, Column, Entity, PrimaryGeneratedColumn,
     OneToOne,
     JoinColumn,
+    ManyToOne,
 } from "typeorm";
-import { RegistrationsEntity } from "./RegistrationsEntity";
-import { ColorsEntity } from "./ColorsEntity";
+import { RegistrationEntity } from "./RegistrationEntity";
+import { ColorEntity } from "./ColorEntity";
 
 @Entity("Car")
-export class CarsEntity extends BaseEntity {
+export class CarEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;
 
@@ -16,15 +17,15 @@ export class CarsEntity extends BaseEntity {
     })
     licensePlateNumber: string;
 
-    @OneToOne(() => RegistrationsEntity, {
+    @OneToOne(() => RegistrationEntity, {
         nullable: false,
         cascade: true,
         eager: true,
     })
     @JoinColumn({
-        referencedColumnName: 'number'
+        referencedColumnName: RegistrationEntity.COLUMN_NUMBER
     })
-    registration: RegistrationsEntity
+    registration: RegistrationEntity
 
     @Column()
     vin: string;
@@ -38,12 +39,12 @@ export class CarsEntity extends BaseEntity {
     @Column()
     description: string;
 
-    @OneToOne(() => ColorsEntity, color => color.id, {
+    @ManyToOne(() => ColorEntity, color => color.id, {
         nullable: false,
         eager: true,
     })
     @JoinColumn({
-        referencedColumnName: 'id'
+        referencedColumnName: ColorEntity.COLUMN_ID
     })
-    color: ColorsEntity
+    color: ColorEntity
 }

@@ -2,7 +2,9 @@ import {
     BaseEntity, Column, Entity, PrimaryColumn} from "typeorm";
 
 @Entity("Registration")
-export class RegistrationsEntity extends BaseEntity {
+export class RegistrationEntity extends BaseEntity {
+
+    public static readonly COLUMN_NUMBER: string = 'number';
 
     @PrimaryColumn()
     number: number;
