@@ -19,6 +19,7 @@ export class CarsEntity extends BaseEntity {
     @OneToOne(() => RegistrationsEntity, {
         nullable: false,
         cascade: true,
+        eager: true,
     })
     @JoinColumn({
         referencedColumnName: 'number'
@@ -37,9 +38,12 @@ export class CarsEntity extends BaseEntity {
     @Column()
     description: string;
 
-    @OneToOne(() => ColorsEntity, {
+    @OneToOne(() => ColorsEntity, color => color.id, {
         nullable: false,
+        eager: true,
     })
-    @JoinColumn()
+    @JoinColumn({
+        referencedColumnName: 'id'
+    })
     color: ColorsEntity
 }
