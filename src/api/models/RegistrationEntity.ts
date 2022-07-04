@@ -7,16 +7,16 @@ export class RegistrationEntity extends BaseEntity {
     public static readonly COLUMN_NUMBER: string = 'number';
 
     @PrimaryColumn()
-    number: number;
+    readonly number: number;
 
     @Column({
         length: 2,
     })
-    stateCode: string;
+    readonly stateCode: string;
 
     @Column()
-    expiration: Date;
+    readonly expiration: Date;
 
     @Column()
-    registeredName: string;
+    readonly registeredName: string;
 }

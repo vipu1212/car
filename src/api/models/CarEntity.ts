@@ -10,12 +10,12 @@ import { ColorEntity } from "./ColorEntity";
 @Entity("Car")
 export class CarEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: string;
+    readonly id: string;
 
     @Column({
         length: 7
     })
-    licensePlateNumber: string;
+    readonly  licensePlateNumber: string;
 
     @OneToOne(() => RegistrationEntity, {
         nullable: false,
@@ -25,19 +25,19 @@ export class CarEntity extends BaseEntity {
     @JoinColumn({
         referencedColumnName: RegistrationEntity.COLUMN_NUMBER
     })
-    registration: RegistrationEntity
+    readonly registration: RegistrationEntity
 
     @Column()
-    vin: string;
+    readonly vin: string;
 
     @Column()
-    price: number;
+    readonly price: number;
 
     @Column()
-    mileage: number;
+    readonly mileage: number;
 
     @Column()
-    description: string;
+    readonly description: string;
 
     @ManyToOne(() => ColorEntity, color => color.id, {
         nullable: false,
@@ -46,5 +46,5 @@ export class CarEntity extends BaseEntity {
     @JoinColumn({
         referencedColumnName: ColorEntity.COLUMN_ID
     })
-    color: ColorEntity
+    readonly color: ColorEntity
 }

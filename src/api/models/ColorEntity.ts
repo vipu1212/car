@@ -7,11 +7,11 @@ export class ColorEntity extends BaseEntity {
     public static readonly COLUMN_ID: string = 'id';
 
     @PrimaryGeneratedColumn()
-    id: string;
+    readonly id: string;
 
     @Column()
-    name: string;
+    readonly name: string;
 
     @Column()
-    imageUrl: string;
+    readonly imageUrl: string;
 }
