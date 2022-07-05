@@ -4,4 +4,4 @@ export const HTTP_CODE = {
   ERR_DEFAULT: 400,
   ERR_NOT_FOUND: 404,
   ERR_UNPROCESSABLE: 422,
-}
+};

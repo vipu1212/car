@@ -1,2 +1,2 @@
-export * from "./CarController";
+export * from './CarController';
 export * from './ColorsController';

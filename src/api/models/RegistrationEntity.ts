@@ -1,16 +1,16 @@
 import {
-    BaseEntity, Column, Entity, PrimaryColumn} from "typeorm";
+  BaseEntity, Column, Entity, PrimaryColumn} from 'typeorm';
 
-@Entity("Registration")
+@Entity('Registration')
 export class RegistrationEntity extends BaseEntity {
 
-    public static readonly COLUMN_NUMBER: string = 'number';
+  public static readonly COLUMN_NUMBER: string = 'number';
 
     @PrimaryColumn()
-    readonly number: number;
+  readonly number: number;
 
     @Column({
-        length: 2,
+      length: 2,
     })
     readonly stateCode: string;
 

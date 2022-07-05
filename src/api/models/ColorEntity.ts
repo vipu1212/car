@@ -1,13 +1,13 @@
 import {
-    BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+  BaseEntity, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
-@Entity("Color")
+@Entity('Color')
 export class ColorEntity extends BaseEntity {
 
-    public static readonly COLUMN_ID: string = 'id';
+  public static readonly COLUMN_ID: string = 'id';
 
     @PrimaryGeneratedColumn()
-    readonly id: string;
+  readonly id: string;
 
     @Column()
     readonly name: string;

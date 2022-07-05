@@ -1,7 +1,7 @@
 import {
-  BaseEntity, Column, Entity, PrimaryColumn} from "typeorm";
+  BaseEntity, Column, Entity, PrimaryColumn} from 'typeorm';
 
-@Entity("VIN")
+@Entity('VIN')
 export class VINEntity extends BaseEntity {
   public static readonly COLUMN_ID: string = 'id';
 

@@ -1,5 +1,5 @@
-import axios from "axios";
-import { VIN } from "../models/VIN";
+import axios from 'axios';
+import { VIN } from '../models/VIN';
 
 type VINResponse = {
   Results: VINResponseResult[]
@@ -16,7 +16,7 @@ export class VINDecoder {
 
     const vin: VIN = new VIN(id);
 
-    console.log(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${id}?format=json`)
+    console.log(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${id}?format=json`);
 
     try {
       const { data } = await axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${id}?format=json`);
@@ -25,15 +25,15 @@ export class VINDecoder {
 
       for (const result of (data as VINResponse).Results) {
         switch (result.Variable) {
-          case 'Model Year':
-            vin.year = Number(result.Value);
-            break;
-          case 'Make':
-            vin.make = result.Value;
-            break;
-          case 'Model':
-            vin.model = result.Value;
-            break;
+        case 'Model Year':
+          vin.year = Number(result.Value);
+          break;
+        case 'Make':
+          vin.make = result.Value;
+          break;
+        case 'Model':
+          vin.model = result.Value;
+          break;
         }
       }
     } catch (error) {

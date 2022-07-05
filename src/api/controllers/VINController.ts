@@ -1,5 +1,5 @@
-import { VINEntity } from "../models/VINEntity";
-import { VINDecoder } from "../services/VINDecoder";
+import { VINEntity } from '../models/VINEntity';
+import { VINDecoder } from '../services/VINDecoder';
 
 export class VINController {
 

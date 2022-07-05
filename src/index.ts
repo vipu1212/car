@@ -1,6 +1,6 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import * as Loaders from "./loaders";
+import * as Loaders from './loaders';
 
 async function init(): Promise<void> {
   await Loaders.DatabaseConnectionLoader();
