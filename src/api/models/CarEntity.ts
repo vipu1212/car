@@ -6,6 +6,7 @@ import {
 } from "typeorm";
 import { RegistrationEntity } from "./RegistrationEntity";
 import { ColorEntity } from "./ColorEntity";
+import { VINEntity } from "./VINEntity";
 
 @Entity("Car")
 export class CarEntity extends BaseEntity {
@@ -27,8 +28,15 @@ export class CarEntity extends BaseEntity {
     })
     readonly registration: RegistrationEntity
 
-    @Column()
-    readonly vin: string;
+    @OneToOne(() => VINEntity, {
+        nullable: false,
+        cascade: true,
+        eager: true,
+    })
+    @JoinColumn({
+        referencedColumnName: VINEntity.COLUMN_ID
+    })
+    vin: VINEntity;
 
     @Column()
     readonly price: number;

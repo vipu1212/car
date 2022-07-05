@@ -1,11 +1,12 @@
 import { Body, Get, JsonController, Post, Param, Delete, Put, Res } from "routing-controllers";
-import { response, Response } from 'express';
+import { Response } from 'express';
 
 import { CarEntity } from "../models/CarEntity";
 import { CarValidator } from "../services/CarValidator";
 import { HTTP_CODE } from "../constants/constants";
 import { RegistrationExpiredError } from "../models/errors/RegistrationExpiredError";
 import { EntityNotFoundError } from "typeorm";
+import { VINController } from "./VinController";
 
 @JsonController('/cars')
 export class CarController {
@@ -23,7 +24,13 @@ export class CarController {
     async postOne(@Body() car: CarEntity, @Res() response: Response): Promise<CarEntity> {
         try {
             CarValidator.validate(car);
+
+            console.log(JSON.stringify(car, null, 2))
+
+            car.vin = await VINController.saveFromVINId(car.vin.id);
+
             const createdCar = await CarEntity.save(car);
+
             response.status(HTTP_CODE.CREATED);
             return createdCar;
         } catch (error) {
@@ -38,7 +45,7 @@ export class CarController {
     }
 
     @Delete('/:id')
-    async deleteOne(@Param('id') id: number) {
+    async deleteOne(@Param('id') id: number, @Res() response: Response) {
         try {
            await CarEntity.delete(id);
         } catch (error) {
