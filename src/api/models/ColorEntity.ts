@@ -7,7 +7,7 @@ export class ColorEntity extends BaseEntity {
   public static readonly COLUMN_ID: string = 'id';
 
     @PrimaryGeneratedColumn()
-  readonly id: string;
+  readonly id: number;
 
     @Column()
     readonly name: string;
