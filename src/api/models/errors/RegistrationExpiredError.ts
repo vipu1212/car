@@ -1,8 +1,6 @@
-import { HttpError } from "routing-controllers";
-import { HTTP_CODE } from "../../constants/constants";
-
-export class RegistrationExpiredError extends HttpError {
+export class RegistrationExpiredError extends Error {
+  public readonly name: string = 'RegistrationExpiredError';
   constructor(expirationDate: Date) {
-    super(HTTP_CODE.ERR_UNPROCESSABLE, `Registration expired on ${expirationDate}`);
+    super(`Registration expired on ${expirationDate}`);
   }
 }

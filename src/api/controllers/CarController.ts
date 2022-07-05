@@ -111,12 +111,12 @@ export class CarController {
     }
 
     private handleUpdateError(error: any, response: Response) {
+        console.log(error);
         if (error instanceof RegistrationExpiredError) {
             response.status(HTTP_CODE.ERR_UNPROCESSABLE).end();
         } else if (error instanceof CarNotFounddError) {
             response.status(HTTP_CODE.ERR_NOT_FOUND).end();
         } else {
-            console.log(error);
             response.status(HTTP_CODE.ERR_DEFAULT).end();
         }
     }
