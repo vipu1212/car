@@ -4,19 +4,19 @@ import {
 @Entity('Registration')
 export class RegistrationEntity extends BaseEntity {
 
-  public static readonly COLUMN_NUMBER: string = 'number';
+  public static COLUMN_NUMBER = 'number';
 
     @PrimaryColumn()
-  readonly number: number;
+      number: number;
 
     @Column({
       length: 2,
     })
-    readonly stateCode: string;
+      stateCode: string;
 
     @Column()
-    readonly expiration: Date;
+      expiration: Date;
 
     @Column()
-    readonly registeredName: string;
+      registeredName: string;
 }

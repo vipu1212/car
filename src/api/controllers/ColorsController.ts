@@ -2,6 +2,8 @@ import { Response } from 'express';
 import { Body, Get, JsonController, Post, Res } from 'routing-controllers';
 import { HTTP_CODE } from '../constants/constants';
 import { ColorEntity } from '../models/ColorEntity';
+import {ColorValidator} from '../services/ColorValidator';
+import {NoEntityInput} from '../models/errors/NoEntityInput';
 
 @JsonController('/colors')
 export class ColorController {
@@ -13,6 +15,9 @@ export class ColorController {
     @Post()
   async postOne(@Body() color: ColorEntity, @Res() response: Response): Promise<ColorEntity> {
     try {
+
+      ColorValidator.validate(color);
+
       const createdColor = await ColorEntity.save(color);
       response.status(HTTP_CODE.CREATED);
       return createdColor;
@@ -21,8 +26,11 @@ export class ColorController {
     }
   }
 
-    private handlePostError(error: any, response: Response) {
-      console.error(error);
-      response.status(HTTP_CODE.ERR_DEFAULT).end();
+    handlePostError(error: any, response: Response) {
+      if (error instanceof NoEntityInput) {
+        response.status(HTTP_CODE.ERR_UNPROCESSABLE).end();
+      } else {
+        response.status(HTTP_CODE.ERR_DEFAULT).end();
+      }
     }
 }

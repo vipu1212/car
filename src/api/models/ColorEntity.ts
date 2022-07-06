@@ -14,4 +14,8 @@ export class ColorEntity extends BaseEntity {
 
     @Column()
     readonly imageUrl: string;
+
+    isEmpty(): boolean {
+      return Object.keys(this).length === 0;
+    }
 }
