@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "2f9e7ff2-d046-417f-aef3-b58a43a7fdfd",
+		"name": "Car",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18409369"
+	},
+	"item": [
+		{
+			"name": "Car",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "890dsfD34SsdkjhfJG8F",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"licensePlateNumber\": \"DIV1235\",\n    \"vin\": {\n        \"id\": \"JH4DC4440RS004255\"\n    },\n    \"price\": 12000.23,\n    \"mileage\": 100002,\n    \"description\": \"Has wheels, does the job\",\n    \"registration\": {\n        \"number\": \"777779999\",\n        \"stateCode\": \"ON\",\n        \"expiration\": \"2023-07-04T18:43:56.144Z\",\n        \"registeredName\": \"Div\"\n    },\n    \"color\": {\n        \"id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/cars",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Car",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "890dsfD34SsdkjhfJG8F",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/cars/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Car",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "890dsfD34SsdkjhfJG8F",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"registration\": {\n        \"number\": \"3\",\n        \"stateCode\": \"ON\",\n        \"expiration\": \"2023-07-04T18:43:56.144Z\",\n        \"registeredName\": \"Div\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/cars/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Car",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "890dsfD34SsdkjhfJG8F",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/cars/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Colors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "890dsfD34SsdkjhfJG8F",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/colors",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"colors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Color",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Yellow\",\n    \"imageUrl\": \"https://img.com/yellow\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/colors",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"colors"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
