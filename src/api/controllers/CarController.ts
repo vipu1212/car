@@ -9,6 +9,7 @@ import { EntityNotFoundError } from 'typeorm';
 import { VINController } from './VINController';
 import { RegistrationEntity } from '../models/RegistrationEntity';
 import { CarNotFounddError } from '../models/errors/CarNotFoundError';
+import {NoEntityInputError} from '../models/errors/NoEntityInputError';
 
 @JsonController('/cars')
 export class CarController {
@@ -81,6 +82,8 @@ export class CarController {
 
     handlePostError(error: any, response: Response) {
       if (error instanceof RegistrationExpiredError) {
+        response.status(HTTP_CODE.ERR_UNPROCESSABLE).end();
+      } else if (error instanceof NoEntityInputError) {
         response.status(HTTP_CODE.ERR_UNPROCESSABLE).end();
       } else {
         response.status(HTTP_CODE.ERR_DEFAULT).end();

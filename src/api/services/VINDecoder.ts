@@ -2,6 +2,7 @@ import axios from 'axios';
 import { VIN } from '../models/VIN';
 import {VIN_DECODER_URL} from '../constants/constants';
 import {IncompleteVINInfoError} from '../models/errors/IncompleteVINInfoError';
+import {NoEntityInputError} from '../models/errors/NoEntityInputError';
 
 export type VINResponse = {
   Results: VINResponseResult[]
@@ -15,6 +16,10 @@ type VINResponseResult = {
 export class VINDecoder {
 
   public static async getVinDetailsFromNumber(id: string): Promise<VIN> {
+
+    if (!id) {
+      throw new NoEntityInputError();
+    }
 
     const vin: VIN = new VIN(id);
 
