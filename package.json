@@ -6,7 +6,7 @@
   "author": "Peter Mah <peter@carshair.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/index.js ",
+    "start": "ts-node ./dist/index.js ",
     "dev": "nodemon -r dotenv/config src/index.ts",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",

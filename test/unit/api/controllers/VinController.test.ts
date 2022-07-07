@@ -10,7 +10,7 @@ describe('VinController', function () {
     const vin = new VINEntity('WBA3A5C57CF256651', 2021, 'BMW', '328i');
 
     it('should execute successfully', function () {
-      spyOn(VINDecoder, 'getVinDetailsFromNumber').mockResolvedValue(VALID_VIN);
+      spyOn(VINDecoder, 'getVinDetailsFromNumber').mockResolvedValue(VALID_VIN as any);
       spyOn(VINEntity, 'save').mockResolvedValue(vin);
 
       expect(VINController.saveFromVINId('WBA3A5C57CF256651')).resolves.toBe(vin);
