@@ -23,13 +23,13 @@ describe('CarController', () => {
       expect(carController.getOne(1, response)).resolves.not.toThrow();
     });
 
-    // it('should fail for non-persisted car id and be handled', async () => {
-    //   spyOn(CarEntity, 'findOneOrFail').mockRejectedValue(new Error());
-    //   carController.handleGetError = jest.fn();
-    //
-    //   expect(carController.getOne(100, response)).resolves.not.toThrow();
-    //   expect(carController.handleGetError).toHaveBeenCalled();
-    // });
+    it('should fail for non-persisted car id and be handled', async () => {
+      spyOn(CarEntity, 'findOneOrFail').mockRejectedValue(new Error());
+      carController.handleGetError = jest.fn();
+
+      await carController.getOne(100, response);
+      expect(carController.handleGetError).toHaveBeenCalled();
+    });
   });
 
   describe('postOne',  () => {
@@ -59,14 +59,14 @@ describe('CarController', () => {
       expect(carController.updateOne(1, VALID_CAR_REQUEST as any, response)).resolves.toBe(VALID_CAR);
     });
 
-    // it('should fail for un-persisted car', function () {
-    //   spyOn(RegistrationEntity, 'upsert').mockResolvedValue(null);
-    //   spyOn(CarEntity, 'update').mockResolvedValue({affected: 0} as UpdateResult);
-    //   carController.handleUpdateError = jest.fn();
-    //
-    //   expect(carController.updateOne(100, VALID_CAR_REQUEST as any, response)).resolves.not.toThrow();
-    //   expect(carController.handleUpdateError).toHaveBeenCalled();
-    // });
+    it('should fail for un-persisted car', async () => {
+      spyOn(RegistrationEntity, 'upsert').mockResolvedValue(null);
+      spyOn(CarEntity, 'update').mockResolvedValue({affected: 0} as UpdateResult);
+      carController.handleUpdateError = jest.fn();
+
+      await carController.updateOne(100, VALID_CAR_REQUEST as any, response);
+      expect(carController.handleUpdateError).toHaveBeenCalled();
+    });
 
     it('should fail for expired registration car and be handled', function () {
       spyOn(RegistrationEntity, 'upsert').mockResolvedValue(null);
@@ -84,12 +84,12 @@ describe('CarController', () => {
       expect(carController.deleteOne(1, response)).resolves.not.toThrow();
     });
 
-    // it('should fail and be handled', function () {
-    //   spyOn(CarEntity, 'delete').mockRejectedValue(new Error());
-    //   carController.handleDeleteError = jest.fn();
-    //
-    //   expect(carController.deleteOne(1, response)).resolves.not.toThrow();
-    //   expect(carController.handleDeleteError).toHaveBeenCalled();
-    // });
+    it('should fail and be handled', async () => {
+      spyOn(CarEntity, 'delete').mockRejectedValue(new Error());
+      carController.handleDeleteError = jest.fn();
+
+      await carController.deleteOne(1, response);
+      expect(carController.handleDeleteError).toHaveBeenCalled();
+    });
   });
 });
