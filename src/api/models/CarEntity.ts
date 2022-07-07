@@ -11,7 +11,7 @@ import { VINEntity } from './VINEntity';
 @Entity('Car')
 export class CarEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
-  readonly id: string;
+  readonly id: number;
 
     @Column({
       length: 7

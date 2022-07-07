@@ -16,6 +16,9 @@ export class CarController {
   async getOne(@Param('id') id: number, @Res() response: Response): Promise < CarEntity > {
     try {
       const car = await CarEntity.findOneOrFail(id);
+
+      console.log(`Returning ${JSON.stringify(car)}`);
+
       return car;
     } catch (error) {
       this.handleGetError(error, response);
@@ -40,7 +43,7 @@ export class CarController {
     }
 
     @Put('/:id')
-    async update(@Param('id') id: number, @Body() car: CarEntity, @Res() response: Response): Promise<CarEntity> {
+    async updateOne(@Param('id') id: number, @Body() car: CarEntity, @Res() response: Response): Promise<CarEntity> {
       try {
         CarValidator.validate(car);
 
@@ -68,8 +71,7 @@ export class CarController {
       }
     }
 
-    private handleGetError(error: any, response: Response) {
-      console.log(error);
+    handleGetError(error: any, response: Response) {
       if (error instanceof EntityNotFoundError) {
         response.status(HTTP_CODE.ERR_NOT_FOUND).end();
       } else {
@@ -77,7 +79,7 @@ export class CarController {
       }
     }
 
-    private handlePostError(error: any, response: Response) {
+    handlePostError(error: any, response: Response) {
       if (error instanceof RegistrationExpiredError) {
         response.status(HTTP_CODE.ERR_UNPROCESSABLE).end();
       } else {
@@ -85,7 +87,7 @@ export class CarController {
       }
     }
 
-    private handleUpdateError(error: any, response: Response) {
+    handleUpdateError(error: any, response: Response) {
       console.log(error);
       if (error instanceof RegistrationExpiredError) {
         response.status(HTTP_CODE.ERR_UNPROCESSABLE).end();
@@ -96,7 +98,7 @@ export class CarController {
       }
     }
 
-    private handleDeleteError(error: any, response: Response) {
+    handleDeleteError(error: any, response: Response) {
       if (error instanceof EntityNotFoundError) {
         response.status(HTTP_CODE.ERR_NOT_FOUND).end();
       } else {

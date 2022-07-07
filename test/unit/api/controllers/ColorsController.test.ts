@@ -29,8 +29,6 @@ describe('ColorController', () => {
 
     it('should throw error for empty input', async () => {
       jest.spyOn(ColorEntity, 'save').mockResolvedValue(ALL_COLORS[0] as ColorEntity);
-      spyOn(response, 'status').mockReturnValue(response);
-      spyOn(response, 'end').mockReturnValue(null);
       colorController.handlePostError = jest.fn();
 
       expect(colorController.postOne(null, response)).resolves.not.toThrow();
