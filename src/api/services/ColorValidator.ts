@@ -3,7 +3,7 @@ import {NoEntityInput} from '../models/errors/NoEntityInput';
 
 export class ColorValidator {
   public static validate(color: ColorEntity) {
-    if (color.isEmpty()) {
+    if (Object.keys(color).length === 0) {
       throw new NoEntityInput();
     }
   }

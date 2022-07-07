@@ -16,7 +16,7 @@ export class CarEntity extends BaseEntity {
     @Column({
       length: 7
     })
-    readonly  licensePlateNumber: string;
+    readonly licensePlateNumber: string;
 
     @OneToOne(() => RegistrationEntity, {
       nullable: false,
