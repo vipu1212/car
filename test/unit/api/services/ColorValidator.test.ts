@@ -1,6 +1,6 @@
 import {ColorValidator} from '../../../../src/api/services/ColorValidator';
 import {VALID_COLOR} from './fixtures/ColorValidatorFixture';
-import {NoEntityInput} from '../../../../src/api/models/errors/NoEntityInput';
+import {NoEntityInputError} from '../../../../src/api/models/errors/NoEntityInputError';
 
 describe('ColorValidator', function () {
 
@@ -11,7 +11,7 @@ describe('ColorValidator', function () {
 
 
     it('should throw for empty object', function () {
-      expect(() => ColorValidator.validate({} as any)).toThrow(NoEntityInput);
+      expect(() => ColorValidator.validate({} as any)).toThrow(NoEntityInputError);
     });
   });
 });

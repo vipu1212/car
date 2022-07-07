@@ -1,7 +1,7 @@
 import {RegistrationValidator} from '../../../../src/api/services/RegistrationValidator';
 import {INVALID_REGISTRATION, VALID_REGISTRATION} from './fixtures/RegistrationValidatorFixture';
 import {RegistrationExpiredError} from '../../../../src/api/models/errors/RegistrationExpiredError';
-import {NoEntityInput} from '../../../../src/api/models/errors/NoEntityInput';
+import {NoEntityInputError} from '../../../../src/api/models/errors/NoEntityInputError';
 
 describe('RegistrationValidator', function () {
 
@@ -11,7 +11,7 @@ describe('RegistrationValidator', function () {
     });
 
     it('should throw for expired registration', function () {
-      expect(() => RegistrationValidator.validate({} as any)).toThrow(NoEntityInput);
+      expect(() => RegistrationValidator.validate({} as any)).toThrow(NoEntityInputError);
     });
 
     it('should throw for expired registration', function () {

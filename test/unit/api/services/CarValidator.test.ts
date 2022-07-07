@@ -1,6 +1,6 @@
 import {CarValidator} from '../../../../src/api/services/CarValidator';
 import {EXPIRED_REG_CAR_REQUEST, VALID_CAR} from './fixtures/CarValidatorFixture';
-import {NoEntityInput} from '../../../../src/api/models/errors/NoEntityInput';
+import {NoEntityInputError} from '../../../../src/api/models/errors/NoEntityInputError';
 import {RegistrationExpiredError} from '../../../../src/api/models/errors/RegistrationExpiredError';
 
 describe('CarValidator', function () {
@@ -11,7 +11,7 @@ describe('CarValidator', function () {
     });
 
     it('should throw for empty input', function () {
-      expect(() => CarValidator.validate({} as any)).toThrowError(NoEntityInput);
+      expect(() => CarValidator.validate({} as any)).toThrowError(NoEntityInputError);
     });
 
     it('should throw for invalid registration', function () {

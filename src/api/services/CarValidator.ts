@@ -1,11 +1,11 @@
 import { CarEntity } from '../models/CarEntity';
 import { RegistrationValidator } from './RegistrationValidator';
-import {NoEntityInput} from '../models/errors/NoEntityInput';
+import {NoEntityInputError} from '../models/errors/NoEntityInputError';
 
 export class CarValidator {
   static validate(car: CarEntity): void {
     if (Object.keys(car).length === 0) {
-      throw new NoEntityInput();
+      throw new NoEntityInputError();
     }
     RegistrationValidator.validate(car.registration);
   }

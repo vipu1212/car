@@ -3,7 +3,7 @@ import { Body, Get, JsonController, Post, Res } from 'routing-controllers';
 import { HTTP_CODE } from '../constants/constants';
 import { ColorEntity } from '../models/ColorEntity';
 import {ColorValidator} from '../services/ColorValidator';
-import {NoEntityInput} from '../models/errors/NoEntityInput';
+import {NoEntityInputError} from '../models/errors/NoEntityInputError';
 
 @JsonController('/colors')
 export class ColorController {
@@ -27,7 +27,7 @@ export class ColorController {
   }
 
     handlePostError(error: any, response: Response) {
-      if (error instanceof NoEntityInput) {
+      if (error instanceof NoEntityInputError) {
         response.status(HTTP_CODE.ERR_UNPROCESSABLE).end();
       } else {
         response.status(HTTP_CODE.ERR_DEFAULT).end();
