@@ -66,7 +66,13 @@ export class CarController {
     @Delete('/:id')
     async deleteOne(@Param('id') id: number, @Res() response: Response) {
       try {
-        await CarEntity.delete(id);
+        const result = await CarEntity.delete(id);
+
+        if (!result.affected) {
+          throw new CarNotFounddError(id);
+        }
+
+        return { id };
       } catch (error) {
         this.handleDeleteError(error, response);
       }
@@ -102,9 +108,10 @@ export class CarController {
     }
 
     handleDeleteError(error: any, response: Response) {
-      if (error instanceof EntityNotFoundError) {
+      if (error instanceof CarNotFounddError) {
         response.status(HTTP_CODE.ERR_NOT_FOUND).end();
       } else {
+        console.log('Something went wrong');
         response.status(HTTP_CODE.ERR_DEFAULT).end();
       }
     }
