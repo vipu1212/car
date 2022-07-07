@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { VIN } from '../models/VIN';
+import {VIN_DECODER_URL} from '../constants/constants';
+import {IncompleteVINInfoError} from '../models/errors/IncompleteVINInfoError';
 
-type VINResponse = {
+export type VINResponse = {
   Results: VINResponseResult[]
 }
 
@@ -16,29 +18,30 @@ export class VINDecoder {
 
     const vin: VIN = new VIN(id);
 
-    console.log(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${id}?format=json`);
+    const { status, statusText, data } = await axios.get( `${VIN_DECODER_URL}/api/vehicles/decodevin/${id}?format=json`);
 
-    try {
-      const { data } = await axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${id}?format=json`);
-
-      console.log(JSON.stringify(data, null, 2));
-
-      for (const result of (data as VINResponse).Results) {
-        switch (result.Variable) {
-        case 'Model Year':
-          vin.year = Number(result.Value);
-          break;
-        case 'Make':
-          vin.make = result.Value;
-          break;
-        case 'Model':
-          vin.model = result.Value;
-          break;
-        }
-      }
-    } catch (error) {
-      console.log(`------ ${error}`);
+    if (status !== 200) {
+      throw new Error(statusText);
     }
+
+    for (const result of (data as VINResponse).Results) {
+      switch (result.Variable) {
+      case 'Model Year':
+        vin.year = Number(result.Value);
+        break;
+      case 'Make':
+        vin.make = result.Value;
+        break;
+      case 'Model':
+        vin.model = result.Value;
+        break;
+      }
+    }
+
+    if (vin.hasIncompleteInfo()) {
+      throw new IncompleteVINInfoError(id);
+    }
+
     return vin;
   }
 }

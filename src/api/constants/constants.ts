@@ -5,3 +5,5 @@ export const HTTP_CODE = {
   ERR_NOT_FOUND: 404,
   ERR_UNPROCESSABLE: 422,
 };
+
+export const VIN_DECODER_URL = 'https://vpic.nhtsa.dot.gov';
