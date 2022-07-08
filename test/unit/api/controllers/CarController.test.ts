@@ -79,7 +79,7 @@ describe('CarController', () => {
 
   describe('deleteOne', function () {
     it('should execute successfully', function () {
-      spyOn(CarEntity, 'delete').mockResolvedValue(null);
+      spyOn(CarEntity, 'delete').mockResolvedValue({affected: 1} as any);
 
       expect(carController.deleteOne(1, response)).resolves.not.toThrow();
     });

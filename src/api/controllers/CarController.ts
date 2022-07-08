@@ -111,7 +111,6 @@ export class CarController {
       if (error instanceof CarNotFounddError) {
         response.status(HTTP_CODE.ERR_NOT_FOUND).end();
       } else {
-        console.log('Something went wrong');
         response.status(HTTP_CODE.ERR_DEFAULT).end();
       }
     }
