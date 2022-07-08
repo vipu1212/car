@@ -54,7 +54,7 @@ Extremely critical, I know. Could not spare time for this, however, a POSTMAN co
 For this project, header authentication was used just to put some authentication in place. As I assumed authentication would not be the focus of this assignment.
 
 #### Git commit users (Both are me)
-First 3 commits were from my official git config user, div-singh-ssense, 🤦 It was changed later with my personal user **vipu1212**
+First 3 commits were from my official git config user, 🤦 It was changed later with my personal user **vipu1212**
 
 ### Feedback
 - How long the assessment took to complete 
