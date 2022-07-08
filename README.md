@@ -1,8 +1,9 @@
 ## Getting Started
 #### Steps to setup and run the project
-- docker-compose up
-- npm run migration:run
-- npm start
+- `docker-compose up`
+- `npm i -SD`
+- `npm run migration:run`
+- `npm start`
 
 #### After starting the server, test the APIs via POSTMAN
 - Download Car.postman_collection.json
@@ -52,6 +53,9 @@ Extremely critical, I know. Could not spare time for this, however, a POSTMAN co
 
 #### Authentication
 For this project, header authentication was used just to put some authentication in place. As I assumed authentication would not be the focus of this assignment.
+
+#### Schema Validator
+I would prefer to have a schema validator implementation or a package
 
 #### Git commit users (Both are me)
 First 3 commits were from my official git config user, 🤦 It was changed later with my personal user **vipu1212**
